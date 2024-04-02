@@ -1,4 +1,6 @@
+
 module and_gate(a,b,c);
+
 	input a,b;
 	output c;
 	and(c,a,b);
@@ -40,6 +42,29 @@ module full_adder_1bit(a,b,cin,s,cout);
 	or_gate or1(w2,w3,cout);
 endmodule
 
+module adder_subtracter(ct0,ct1,ct2,ct3,ncell0,ncell1,ncell2,ncell3,ctrl,new_ct0,new_ct1,new_ct2,new_ct3);
+	//A(XOR)1=A BAR
+	//A(XOR)0=A
+	input ct0,ct1,ct2,ct3,ncell0,ncell1,ncell2,ncell3,ctrl;
+	output new_ct0,new_ct1,new_ct2,new_ct3;
+	wire w1,w2,w3,w4,cw0,cw1,cw2,cw3;
+	
+	//and_gate and1(ncell0,on_off,w1);
+	//and_gate and2(ncell1,on_off,w2);
+	//and_gate and3(ncell2,on_off,w3);
+	//and_gate and4(ncell3,on_off,w4);
+	
+	xor_gate xor1(ncell0,ctrl,w1);
+	xor_gate xor2(ncell1,ctrl,w2);
+	xor_gate xor3(ncell2,ctrl,w3);
+	xor_gate xor4(ncell3,ctrl,w4);
+	
+	full_adder_1bit full1(w1,ct0,ctrl,new_ct0,cw1);
+	full_adder_1bit full2(w2,ct1,cw1,new_ct1,cw2);
+	full_adder_1bit full3(w3,ct2,cw2,new_ct2,cw3);
+	full_adder_1bit full4(w4,ct3,cw3,new_ct3,cw4);
+endmodule
+
 
 module multiplier_4_bit(a0,a1,a2,a3,b0,b1,b2,b3,p0,p1,p2,p3,p4,p5,p6,p7);
 	input a0,a1,a2,a3,b0,b1,b2,b3;
@@ -73,6 +98,7 @@ module multiplier_4_bit(a0,a1,a2,a3,b0,b1,b2,b3,p0,p1,p2,p3,p4,p5,p6,p7);
 	full_adder_1bit full4(w10,w13,cw6,w16,cw7);
 	full_adder_1bit full5(cw4,w14,cw7,w17,cw8);
 	
+	
 	//level4
 	and_gate and13(b3,a0,w18);
 	and_gate and14(b3,a1,w19);
@@ -84,12 +110,19 @@ module multiplier_4_bit(a0,a1,a2,a3,b0,b1,b2,b3,p0,p1,p2,p3,p4,p5,p6,p7);
 	full_adder_1bit full8(cw8,w21,cw11,p6,p7);
 endmodule
 
-module FCIMS(a0,a1,a2,a3,b0,b1,b2,b3,p0,p1,p2,p3,p4,p5,p6,p7);
-	input a0,a1,a2,a3,b0,b1,b2,b3;
-	output p0,p1,p2,p3,p4,p5,p6,p7;
+module FCIMS(ctrl,uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,ct0,ct1,ct2,ct3,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3);
+	input uprice0,uprice1,uprice2,uprice3,uprice3,ncel0,ncel1,ncel2,ncel3,ct0,ct1,ct2,ct3,ctrl;
+	output fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3;
 	
-	multiplier_4_bit multi1(a0,a1,a2,a3,b0,b1,b2,b3,p0,p1,p2,p3,p4,p5,p6,p7);
+	adder_subtracter ad_sub1(ct0,ct1,ct2,ct3,ncel0,ncel1,ncel2,ncel3,ctrl,new_ct0,new_ct1,new_ct2,new_ct3);
+	multiplier_4_bit multi1(uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7);
+	//ctrl,uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,ct0,ct1,ct2,ct3,new_ct0,new_ct1,new_ct2,new_ct3,on_off
+	//input uprice0,uprice1,uprice2,uprice3,uprice3,ncel0,ncel1,ncel2,ncel3,ct0,ct1,ct2,ct3,ctrl,on_off;
+	//output fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3;
+	//adder_subtracter ad_sub1(ct0,ct1,ct2,ct3,ncel0,ncel1,ncel2,ncel3,ctrl,on_off,new_ct0,new_ct1,new_ct2,new_ct3);
+	//multiplier_4_bit multi1(uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7);
 endmodule
+
 
 
 
