@@ -270,9 +270,7 @@ module FCIMS(reset,ctrl,uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,
 	
 	not_gate not3(w14,w29);
 	
-	adder_subtracter ad_sub1(w10,w11,w12,w13,
-	
-	w25,w26,w27,w28,w14,new_ct0,new_ct1,new_ct2,new_ct3);
-	multiplier_4_bit multi1(w25,w26,w27,w28,w10,w11,w12,w13,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7);
+	adder_subtracter ad_sub1(w10,w11,w12,w13,w25,w26,w27,w28,w14,new_ct0,new_ct1,new_ct2,new_ct3);
+	multiplier_4_bit multi1(w25,w26,w27,w28,w2,w3,w4,w5,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7);
 	adder_8bit add_prod(fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,w15,w16,w17,w18,w19,w20,w21,w22,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7,w29);
 endmodule
