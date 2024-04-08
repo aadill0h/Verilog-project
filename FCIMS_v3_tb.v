@@ -11,6 +11,8 @@ reset=0;uprice0=0;uprice1=0;uprice2=0;uprice3=1;ncel0=1;ncel1=1;ncel2=0;ncel3=0;
 #10
 reset=0;uprice0=0;uprice1=1;uprice2=0;uprice3=0;ncel0=0;ncel1=1;ncel2=0;ncel3=0;ct0=0;ct1=0;ct2=1;ct3=1;ctrl=1;tprice_init0=0;tprice_init1=0;tprice_init2=0;tprice_init3=1;tprice_init4=1;tprice_init5=0;tprice_init6=0;tprice_init7=0;
 #10
+reset=0;uprice0=1;uprice1=1;uprice2=0;uprice3=0;ncel0=0;ncel1=1;ncel2=0;ncel3=0;ct0=0;ct1=1;ct2=0;ct3=1;ctrl=0;tprice_init0=0;tprice_init1=0;tprice_init2=1;tprice_init3=1;tprice_init4=1;tprice_init5=0;tprice_init6=0;tprice_init7=0;
+#10
 $finish();
 end
 
