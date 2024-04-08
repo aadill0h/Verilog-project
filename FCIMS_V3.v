@@ -55,6 +55,7 @@ endmodule
 module and5_gate(a,b,c,d,e,out);
 	input a,b,c,d,e;
 	output out;
+	wire w1,w2,w3;
 	
 	and_gate and1(a,b,w1);
 	and_gate and2(w1,c,w2);
@@ -226,10 +227,10 @@ module comparator_8bit(a0,a1,a2,a3,a4,a5,a6,a7,b0,b1,b2,b3,b4,b5,b6,b7,a_greater
 
 endmodule
 	
-module FCIMS(reset,ctrl,uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,ct0,ct1,ct2,ct3,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3,tprice_init0,tprice_init1,tprice_init2,tprice_init3,tprice_init4,tprice_init5,tprice_init6,tprice_init7,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7);
+module FCIMS(reset,ctrl,uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,ct0,ct1,ct2,ct3,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3,tprice_init0,tprice_init1,tprice_init2,tprice_init3,tprice_init4,tprice_init5,tprice_init6,tprice_init7,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7,empty);
 	input uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,ct0,ct1,ct2,ct3,ctrl,reset,tprice_init0,tprice_init1,tprice_init2,tprice_init3,tprice_init4,tprice_init5,tprice_init6,tprice_init7;
-	output fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7;
-	wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,w17,w18,w19,w20,w21,w22,w23,w24,w25,w26,w27,w28,w29,ncell_greater_count;
+	output fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7,empty;
+	wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,w17,w18,w19,w20,w21,w22,w23,w24,w25,w26,w27,w28,w29,ncell_greater_count,e1;
 	
 	not_gate not1(reset,w1);
 	//if reset ==1 or TRUE then system will be reset
@@ -268,9 +269,16 @@ module FCIMS(reset,ctrl,uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,
 	and_gate and25(w24,w8,w27);
 	and_gate and26(w24,w9,w28);
 	
+	multiplier_4_bit multi1(w25,w26,w27,w28,w2,w3,w4,w5,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7);
+	
 	not_gate not3(w14,w29);
 	
+	
+	
+
+	
 	adder_subtracter ad_sub1(w10,w11,w12,w13,w25,w26,w27,w28,w14,new_ct0,new_ct1,new_ct2,new_ct3);
-	multiplier_4_bit multi1(w25,w26,w27,w28,w2,w3,w4,w5,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7);
 	adder_8bit add_prod(fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,w15,w16,w17,w18,w19,w20,w21,w22,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7,w29);
+	or4_gate or4_1(new_ct0,new_ct1,new_ct2,new_ct3,e1);
+	not_gate not4(e1,empty);
 endmodule
