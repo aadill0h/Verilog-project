@@ -225,7 +225,7 @@ endmodule
 module FCIMS(reset,ctrl,uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,ct0,ct1,ct2,ct3,fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3,tprice_init0,tprice_init1,tprice_init2,tprice_init3,tprice_init4,tprice_init5,tprice_init6,tprice_init7,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7,empty);
 	input uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,ct0,ct1,ct2,ct3,ctrl,reset,tprice_init0,tprice_init1,tprice_init2,tprice_init3,tprice_init4,tprice_init5,tprice_init6,tprice_init7;
 	output fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,new_ct0,new_ct1,new_ct2,new_ct3,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7,empty;
-	wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,w17,w18,w19,w20,w21,w22,w23,w24,w25,w26,w27,w28,w29,ncell_greater_count,e1;
+	wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,w17,w18,w19,w20,w21,w22,w23,w24,w25,w26,w27,w28,w29,ncell_greater_count,e1,w30,w31,w32,nwire0,nwire1,nwire2,nwire3,pwire0,pwire1,pwire2,pwire3,pwire4,pwire5,pwire6,pwire7;
 	
 	not_gate not1(reset,w1);
 	//if reset ==1 or TRUE then system will be reset
