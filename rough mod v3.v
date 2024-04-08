@@ -97,11 +97,6 @@ module adder_subtracter(ct0,ct1,ct2,ct3,ncell0,ncell1,ncell2,ncell3,ctrl,new_ct0
 	output new_ct0,new_ct1,new_ct2,new_ct3;
 	wire w1,w2,w3,w4,cw0,cw1,cw2,cw3;
 	
-	//and_gate and1(ncell0,on_off,w1);
-	//and_gate and2(ncell1,on_off,w2);
-	//and_gate and3(ncell2,on_off,w3);
-	//and_gate and4(ncell3,on_off,w4);
-	
 	xor_gate xor1(ncell0,ctrl,w1);
 	xor_gate xor2(ncell1,ctrl,w2);
 	xor_gate xor3(ncell2,ctrl,w3);
@@ -276,26 +271,26 @@ module FCIMS(reset,ctrl,uprice0,uprice1,uprice2,uprice3,ncel0,ncel1,ncel2,ncel3,
 	
 	comparator_8bit(fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,w15,w16,w17,w18,w19,w20,w21,w22,price_greater_total);
 	and_gate and27(price_greater_total,w29,w30);
-	not_gate not3(w30,w31);
+	not_gate not4(w30,w31);
 	
 	and_gate and28(w31,w24,w32);
 	
-	and_gate and28(w25,w32,nwire0);
-	and_gate and29(w26,w32,nwire1);
-	and_gate and30(w27,w32,nwire2);
-	and_gate and31(w28,w32,nwire3);
+	and_gate and29(w25,w32,nwire0);
+	and_gate and30(w26,w32,nwire1);
+	and_gate and31(w27,w32,nwire2);
+	and_gate and32(w28,w32,nwire3);
 	
-	and_gate and32(fprice0,w32,pwire0);
-	and_gate and33(fprice1,w32,pwire1);
-	and_gate and34(fprice2,w32,pwire2);
-	and_gate and35(fprice3,w32,pwire3);
-	and_gate and36(fprice4,w32,pwire4);
-	and_gate and37(fprice5,w32,pwire5);
-	and_gate and38(fprice6,w32,pwire6);
-	and_gate and39(fprice7,w32,pwire7);
+	and_gate and33(fprice0,w32,pwire0);
+	and_gate and34(fprice1,w32,pwire1);
+	and_gate and35(fprice2,w32,pwire2);
+	and_gate and36(fprice3,w32,pwire3);
+	and_gate and37(fprice4,w32,pwire4);
+	and_gate and38(fprice5,w32,pwire5);
+	and_gate and39(fprice6,w32,pwire6);
+	and_gate and40(fprice7,w32,pwire7);
 	
-	adder_subtracter ad_sub1(w10,w11,w12,w13,w25,w26,w27,w28,w14,new_ct0,new_ct1,new_ct2,new_ct3);
-	adder_8bit add_prod(fprice0,fprice1,fprice2,fprice3,fprice4,fprice5,fprice6,fprice7,w15,w16,w17,w18,w19,w20,w21,w22,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7,w29);
+	adder_subtracter ad_sub1(w10,w11,w12,w13,nwire0,nwire1,nwire2,nwire3,w14,new_ct0,new_ct1,new_ct2,new_ct3);
+	adder_8bit add_prod(pwire0,pwire1,pwire2,pwire3,pwire4,pwire5,pwire6,pwire7,w15,w16,w17,w18,w19,w20,w21,w22,tprice_final0,tprice_final1,tprice_final2,tprice_final3,tprice_final4,tprice_final5,tprice_final6,tprice_final7,w29);
 	or4_gate or4_1(new_ct0,new_ct1,new_ct2,new_ct3,e1);
-	not_gate not4(e1,empty);
+	not_gate not5(e1,empty);
 endmodule
