@@ -1,0 +1,18 @@
+module adder_subtracter(ct0,ct1,ct2,ct3,ncell0,ncell1,ncell2,ncell3,ctrl,new_ct0,new_ct1,new_ct2,new_ct3);
+	//A(XOR)1=A BAR
+	//A(XOR)0=A
+	input ct0,ct1,ct2,ct3,ncell0,ncell1,ncell2,ncell3,ctrl;
+	output new_ct0,new_ct1,new_ct2,new_ct3;
+	wire w1,w2,w3,w4,cw0,cw1,cw2,cw3;
+	
+
+	xor_gate xor1(ncell0,ctrl,w1);
+	xor_gate xor2(ncell1,ctrl,w2);
+	xor_gate xor3(ncell2,ctrl,w3);
+	xor_gate xor4(ncell3,ctrl,w4);
+	
+	full_adder_1bit full1(w1,ct0,ctrl,new_ct0,cw1);
+	full_adder_1bit full2(w2,ct1,cw1,new_ct1,cw2);
+	full_adder_1bit full3(w3,ct2,cw2,new_ct2,cw3);
+	full_adder_1bit full4(w4,ct3,cw3,new_ct3,cw4);
+endmodule
